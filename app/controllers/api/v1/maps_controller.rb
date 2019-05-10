@@ -1,3 +1,5 @@
+require 'find_routes'
+
 module Api
 	module V1
 		class MapsController < ApplicationController
@@ -52,11 +54,15 @@ module Api
 				end
 			end
 
-			def find_route
-				@map = Map.find_by(name: params[:name])
+			def find_routes
+				@map = Map.find_by(name: params[:map])
 
 				if @map
-					@route = FindRoute.direct_route(@map.id, @map.initial_point, @map.final_point, @map.cost_per_km)
+					@route = FindRoute.direct_route(@map.id, 
+						params[:initial_point], 
+						params[:final_point], 
+						params[:cost_per_km])
+
 					unless @route.nil?
 						render json: {status: 'Sucess', message:'Route found', data:@route},status: :ok
 					else
