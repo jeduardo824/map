@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  initial_point: MyString
+  final_point: MyString
+  distance: 1
+  map: one
+
+two:
+  initial_point: MyString
+  final_point: MyString
+  distance: 1
+  map: two
