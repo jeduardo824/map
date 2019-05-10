@@ -1,11 +1,9 @@
 class FindRoute
   def initialize(map_id, initial_point, final_point, cost_per_km)
-    @map_id = map_name
+    @map_id = map_id
     @initial_point = initial_point
     @final_point = final_point
     @cost_per_km = cost_per_km
-
-    #@direct_route = self.direct_route
   end
 
   def self.direct_route(*args)
@@ -13,13 +11,13 @@ class FindRoute
   end
 
   def direct_route
-    @route = Route.where(map_id: @map_id, initial_point: @initial_point, final_point: @final_point)
-
-    unless @route.empty?
+    @route = Route.find_by(map_id: @map_id, initial_point: @initial_point, final_point: @final_point)
+    
+    if @route
       return {"inital_point" => @route.initial_point,
         "final_point" => @route.final_point,
         "distace" => @route.distance,
-        "final_cost" => @route.distace * @cost_per_km
+        "final_cost" => @route.distance * @cost_per_km}
     else
       return nil
     end
