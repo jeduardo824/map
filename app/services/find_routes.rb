@@ -27,7 +27,6 @@ class FindRoute
     end
 
     matrix = RGL::DijkstraAlgorithm.new(graph, edge_weights, visitor)
-    matrix.shortest_path(@initial_point, @final_point)
     return matrix.shortest_path(@initial_point, @final_point), visitor.distance_to_root(@final_point)
 
   end
