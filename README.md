@@ -22,7 +22,7 @@ Things you may want to cover:
   
 # Database creation
 
-> The models already have his respective migrations, just run `rake db:migrate` to build the tables on your database. 
+> The models already have his respective migrations, just run `rake db:setup` to build the tables on your database. 
 
 # How to run the test suite
 
@@ -33,21 +33,21 @@ Things you may want to cover:
   ## /api/v1/maps
   * POST: Accepts a JSON with the map attributes and the routes attributes to be associated with it.  
   > Example:  
-  ```json  
-		{
-    "map":{
-				"name": "Rio de Janeiro",
-				"routes_attributes":[
-					{"initial_point":"A", "final_point":"B", "distance": 10},
-					{"initial_point":"A", "final_point":"D", "distance": 5},
-					{"initial_point":"B", "final_point":"C", "distance": 20},
-					{"initial_point":"B", "final_point":"E", "distance": 30},
-					{"initial_point":"C", "final_point":"D", "distance": 15},
-					{"initial_point":"C", "final_point":"E", "distance": 50}]
-        }
-      }
+  ```json
+    {
+      "map":{
+        "name": "Rio de Janeiro",
+        "routes_attributes":[
+          {"initial_point":"A", "final_point":"B", "distance": 10},
+          {"initial_point":"A", "final_point":"D", "distance": 5},
+          {"initial_point":"B", "final_point":"C", "distance": 20},
+          {"initial_point":"B", "final_point":"E", "distance": 30},
+          {"initial_point":"C", "final_point":"D", "distance": 15},
+          {"initial_point":"C", "final_point":"E", "distance": 50}]
+          }
+    }
   ```  
-  > Response: Sucess (200) with the map data, or error (422) with error(s) messages.  
+  > Response: Sucess (200) with the map data, or Error (422) with error(s) messages.  
   
   ## /api/v1/maps/find_routes  
   * GET: Accepts a JSON with the map name, the initial point, the final point and the cost per km to build a route and calculate his total cost.  
