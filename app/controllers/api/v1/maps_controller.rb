@@ -61,7 +61,7 @@ module Api
 
 				if @map
 					@route, @total_distance = FindRoute.found_route(@map.id, params[:initial_point], params[:final_point])
-					@total_cost = @total_distance * params[:cost_per_km]
+					@total_cost = @total_distance * params[:cost_per_km].to_f
 
 					unless @route.nil?
 						render json: {status: 'Sucess', message:'Route found', data:['list' => @route, 'total_distance' => @total_distance, 'total_cost' => @total_cost]}, status: :ok
