@@ -10,7 +10,7 @@ module Api
 			end
 
 			def show
-				@map = Map.find_by(id: params[:id]).as_json(include:{ routes:{ only: [:initial_point, :final_point, :distance]}}, only: :name)
+				@map = Map.find(params[:id]).as_json(include:{ routes:{ only: [:initial_point, :final_point, :distance]}}, only: :name)
 
 				if @map
 					render json: {status: 'Sucess', message: 'Map loaded', data:@map}, status: :ok
@@ -31,7 +31,7 @@ module Api
 			end
 
 			def update
-				@map = Map.find_by(id: params[:id])
+				@map = Map.find(params[:id])
 
 				if @map
 					if @map.update_attributes(map_params)
@@ -45,7 +45,7 @@ module Api
 			end
 
 			def destroy
-				@map = Map.find_by(id: params[:id])
+				@map = Map.find(params[:id])
 
 				if @map
 					if @map.destroy
@@ -57,7 +57,7 @@ module Api
 			end
 
 			def find_routes
-				@map = Map.find_by(name: params[:map])
+				@map = Map.find(params[:map])
 
 				if @map
 					@route, @total_distance = FindRoute.found_route(@map.id, params[:initial_point], params[:final_point])
